@@ -1,0 +1,216 @@
+snippet lib
+	library(${1:package})
+
+snippet req
+	require(${1:package})
+
+snippet src
+	source("${1:file.R}")
+
+snippet ret
+	return(${1:code})
+
+snippet mat
+	matrix(${1:data}, nrow = ${2:rows}, ncol = ${3:cols})
+
+snippet sg
+	setGeneric("${1:generic}", function(${2:x, ...}) {
+		standardGeneric("${1:generic}")
+	})
+
+snippet sm
+	setMethod("${1:generic}", ${2:class}, function(${2:x, ...}) {
+		${0}
+	})
+
+snippet sc
+	setClass("${1:Class}", slots = c(${2:name = "type"}))
+
+snippet if
+	if (${1:condition}) {
+		${0}
+	}
+
+snippet el
+	else {
+		${0}
+	}
+
+snippet ei
+	else if (${1:condition}) {
+		${0}
+	}
+
+snippet fun
+	${1:name} <- function(${2:variables}) {
+		${0}
+	}
+
+snippet for
+	for (${1:variable} in ${2:vector}) {
+		${0}
+	}
+
+snippet while
+	while (${1:condition}) {
+		${0}
+	}
+
+snippet switch
+	switch (${1:object},
+		${2:case} = ${3:action}
+	)
+
+snippet apply
+	apply(${1:array}, ${2:margin}, ${3:...})
+
+snippet lapply
+	lapply(${1:list}, ${2:function})
+
+snippet sapply
+	sapply(${1:list}, ${2:function})
+
+snippet mapply
+	mapply(${1:function}, ${2:...})
+
+snippet tapply
+	tapply(${1:vector}, ${2:index}, ${3:function})
+
+snippet vapply
+	vapply(${1:list}, ${2:function}, FUN.VALUE = ${3:type}, ${4:...})
+
+snippet rapply
+	rapply(${1:list}, ${2:function})
+
+snippet ts
+	`r paste("#", date(), "------------------------------\n")`
+
+snippet shinyapp
+	library(shiny)
+
+	ui <- fluidPage(
+	  # Front-end interface
+	  ${0}
+	)
+
+	server <- function(input, output, session) {
+	  # Back-end logic
+
+	}
+
+	shinyApp(ui, server)
+
+snippet shinymod
+	${1:name}_UI <- function(id) {
+	  ns <- NS(id)
+	  tagList(
+		${0}
+	  )
+	}
+
+	${1:name} <- function(input, output, session) {
+
+	}
+
+snippet bb
+	#### ${1:header} --------------------------------
+	${0}
+
+snippet ll
+	## ${1:sub-header} ----------------
+	${0}
+
+snippet gg
+	ggplot(${1:data}, aes(${2:aes})) +
+		geom_${3:geom}()
+
+snippet aa
+	${1:dataset} <- ${1:dataset} |> ${0}
+
+snippet pp
+	#### Packages -----------------------------
+
+	pacman::p_load(
+		tidyverse,     # packages ggplot2, dplyr, tidyr, readr, purrr, tibble,
+		               # stringr, and forcats
+		broom,         # functions tidy(), glance(), augment()
+		flextable,     # Easily create tables for reporting and publications.
+		fs,            # Cross-platform interface to file system operations
+		glue,          # Glue strings to data in R
+		gt,            # Easily Create Presentation-Ready Display Tables
+		here,          # Constructs paths to your project's files
+		janitor,       # for working with dirty data
+		khroma,        # Colour Schemes for Scientific Data Visualization
+	  lubridate,     # Functions to work with date-times and time-spans
+		mice,          # Multiple imputation using Fully Conditional Specification
+		naniar,        # structures, summaries, and visualisations for missing data
+		patchwork,     # combine separate ggplots into the same graphic
+		readxl,        # read in excel files
+		rstatix,       # Pipe-Friendly Framework for Basic Statistical Tests
+		scales,        # Scale functions for visualization
+		skimr,         # Compact and Flexible Summaries of Data
+		smplot2,       # Creating and annotating a composite plot in ggplot2
+		install = FALSE
+	)${0}
+
+snippet hh
+	`r paste0('here::here("', paste0(strsplit(gsub('"', "", gsub("\\\\", "/", clipr::read_clip())), "/")[[1]], collapse = '", \n"'), '")', sep = "")`
+
+snippet ff
+	#### Load fonts --------------------------------
+
+	# extrafont::fonts()  # Vector of font family names
+	# extrafont::fonttable()  # Show entire table
+	# extrafont::font_import()  # imports fonts installed on the system
+	extrafont::loadfonts(device = "pdf", quiet = TRUE)${0}
+
+snippet lala
+	#### Other packages -----------------------------
+
+	library(lamisc)       # devtools::install_github("emilelatour/lamisc") ${0}
+	library(lagree)       # devtools::install_github("emilelatour/lagree")
+	library(latable)      # devtools::install_github("emilelatour/latable")
+	library(laviz)        # devtools::install_github("emilelatour/laviz")
+	library(purposeful)   # devtools::install_github("emilelatour/purposeful")
+	library(redcaptools)  # devtools::install_github("emilelatour/redcaptools")
+	library(tidytableone) # devtools::install_github("emilelatour/tidytableone")
+
+snippet rr
+	#### Load the data --------------------------------
+
+	file_path <- ${1:path}
+
+
+	${2:data} <- readr::read_rds(file = file_path)
+
+	${2:data} <- readr::read_csv(file = file_path)
+
+	${2:data} <- readxl::read_excel(path = file_path,
+	                           sheet = NULL,
+	                           range = NULL,
+	                           col_names = TRUE,
+	                           col_types = NULL,
+	                           na = "",
+	                           trim_ws = TRUE,
+	                           skip = 0,
+	                           n_max = Inf)
+
+
+	dplyr::glimpse(${2:data})
+
+snippet ww
+	#### Write to file --------------------------------
+
+	readr::write_csv(x = ${1:data},
+	                 file = here::here("data",
+	                                   "${2:name}.csv"),
+	                 na = "")
+
+
+	readr::write_rds(x = ${1:data},
+	                 file = here::here("data",
+	                                   "${2:name}.rds"))
+
+
+
+
