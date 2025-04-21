@@ -102,7 +102,6 @@ purrr::walk(.x = github_repos,
 
 #### Others still not installed --------------------------------
 
-devtools::install_github("emilelatour/tidytableone")
 
 current <- installed.packages() %>%
   tibble::as_tibble() %>%
@@ -112,3 +111,10 @@ need_to_install <- previous %>%
   dplyr::filter(!package %in% current$package)
 
 need_to_install
+# # A tibble: 4 × 10
+#   package    lib_path                               version priority depends imports needs_compilation built url   source
+#   <chr>      <chr>                                  <chr>   <chr>    <chr>   <chr>   <chr>             <chr> <chr> <chr>
+# 1 hrbraddins /Library/Frameworks/R.framework/Versi… 0.4.0   NA       R (>= … "rstud… no                4.4.0 "htt… GitHu…
+# 2 rtweet     /Library/Frameworks/R.framework/Versi… 2.0.0   NA       R (>= … "bit64… no                4.4.0 "htt… CRAN
+# 3 twitteR    /Library/Frameworks/R.framework/Versi… 1.1.9   NA       R (>= … "metho… no                4.4.0 "htt… CRAN
+# 4 visR       /Library/Frameworks/R.framework/Versi… 0.4.1   NA       R (>= … "broom… no                4.4.0 "htt… CRAN
