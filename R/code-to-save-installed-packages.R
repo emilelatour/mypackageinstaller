@@ -25,6 +25,15 @@ pacman::p_load(
 )
 
 
+#### Source functions --------------------------------
+
+source(here::here("R",
+                  "get_installed_packages.R"))
+
+source(here::here("R",
+                  "package_source.R"))
+
+
 #### Get the list of installed packages  --------------------------------
 
 (list_of_installed_pkgs <- get_installed_packages())

@@ -29,7 +29,7 @@ pacman::p_load(
 
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
-BiocManager::install(version = "3.19")
+BiocManager::install(version = BiocManager::version())
 
 (file_path <- here::here("my-installed-packages",
                          "my-package-list_2025-04-01.csv")
