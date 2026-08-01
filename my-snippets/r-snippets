@@ -212,6 +212,88 @@ snippet ww
 	                 file = here::here("data",
 	                                   "${2:name}.rds"))
 
+snippet tv
+	library(tidyverse)
+	library(glue)
+	library(janitor)
 
+snippet cw
+	dplyr::case_when(
+		${1:condition} ~ ${2:value},
+		.default = ${3:NA}
+	)
+
+snippet ac
+	dplyr::mutate(
+		dplyr::across(
+			.cols = ${1:where(is.numeric)},
+			.fns = ${2:list(mean = ~ mean(.x, na.rm = TRUE))}
+		)
+	)
+
+snippet gs
+	${1:data} |>
+		dplyr::group_by(${2:group}) |>
+		dplyr::summarise(
+			${3:n = dplyr::n()},
+			.groups = "drop"
+		)
+
+snippet pvl
+	tidyr::pivot_longer(
+		cols = ${1:cols},
+		names_to = "${2:name}",
+		values_to = "${3:value}"
+	)
+
+snippet pvw
+	tidyr::pivot_wider(
+		names_from = ${1:name},
+		values_from = ${2:value}
+	)
+
+snippet nin
+	`%nin%` <- function(x, table) match(x, table, nomatch = 0L) == 0L
+
+snippet mi
+	#### Multiple imputation --------------------------------
+
+	# Dry run to grab and edit the predictor matrix / methods
+	ini <- mice::mice(${1:data}, maxit = 0, print = FALSE)
+	pred <- ini$predictorMatrix
+	meth <- ini$method
+
+	imp <- mice::mice(
+		${1:data},
+		m = ${2:20},
+		method = meth,
+		predictorMatrix = pred,
+		seed = ${3:2024},
+		print = FALSE
+	)
+
+	fit <- with(imp, ${4:lm(y ~ x)})
+	pooled <- mice::pool(fit)
+	summary(pooled, conf.int = TRUE)
+
+snippet seed
+	set.seed(${1:2024})
+
+snippet si
+	sessioninfo::session_info()
+
+snippet gsave
+	ggplot2::ggsave(
+		filename = here::here("figures", "${1:name}.png"),
+		plot = ${2:last_plot()},
+		width = ${3:8},
+		height = ${4:5},
+		dpi = 300
+	)
+
+snippet tt
+	testthat::test_that("${1:description}", {
+		${0}
+	})
 
 

@@ -1,0 +1,43 @@
+snippet [
+	[${1:label}](${2:location})
+
+snippet ![
+	![${1:label}](${2:location})
+
+snippet r
+	```{r ${1:label}, ${2:options}}
+	${0}
+	```
+
+snippet rcpp
+	```{r, engine='Rcpp'}
+	#include <Rcpp.h>
+	using namespace Rcpp;
+
+	${0}
+
+	```
+
+snippet cal
+	::: {.callout-${1:note}}
+	## ${2:Title}
+
+	${0}
+	:::
+
+snippet div
+	::: {${1:.column-margin}}
+	${0}
+	:::
+
+snippet xref
+	@${1:fig}-${2:label}
+
+snippet chunk
+	```{r}
+	#| label: ${1:label}
+	#| echo: ${2:false}
+	#| warning: false
+
+	${0}
+	```
